@@ -19,3 +19,8 @@ rules:
         - expect
         - request.**.expect
         - request.*.expect
+  import/no-extraneous-dependencies:
+    - error
+    - devDependencies:
+        - "**/*.test.ts"
+        - "./src/test/**"
