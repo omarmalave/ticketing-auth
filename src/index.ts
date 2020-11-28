@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
+import pino from 'pino';
 import app from './app';
+
+const log = pino();
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
@@ -15,13 +18,13 @@ const start = async () => {
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-    console.log('Connected to MongoDB');
+    log.info('Connected to MongoDB');
   } catch (err) {
-    console.error(err);
+    log.error(err);
   }
 
   app.listen(3000, () => {
-    console.log('Listening on port: 3000');
+    log.info('Listening on port: 3000');
   });
 };
 
